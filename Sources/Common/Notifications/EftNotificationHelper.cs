@@ -1,9 +1,30 @@
-
 using System;
 using EFT.Communications;
-using SwiftXP.SPT.Common.Loggers;
 
 namespace SwiftXP.SPT.Common.Notifications;
+
+public static class EftNotificationHelper
+{
+    public static void SendAlert(string message)
+    {
+        NotificationsService.SendAlert(message);
+    }
+
+    public static void SendLongAlert(string message)
+    {
+        NotificationsService.SendLongAlert(message);
+    }
+
+    public static void SendNotice(string message)
+    {
+        NotificationsService.SendNotice(message);
+    }
+
+    public static void SendLongNotice(string message)
+    {
+        NotificationsService.SendLongNotice(message);
+    }
+}
 
 public class NotificationsService
 {
@@ -33,13 +54,8 @@ public class NotificationsService
 
     public static void Send(string message, ENotificationDurationType duration, ENotificationIconType icon)
     {
-        GClass2551 updatedPricesMessage = new(
-            message,
-            duration,
-            icon
-        );
-
-        NotificationManagerClass.DisplayNotification(updatedPricesMessage);
+        CustomNotification notification = new(message, duration, icon, null);
+        NotificationManager.DisplayNotification(notification);
     }
 
     public static NotificationsService Instance => s_instance.Value;

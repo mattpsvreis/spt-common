@@ -22,5 +22,10 @@ public static class EFTGameExtensions
         }
     }
 
-    public static ISession Session => ClientAppUtils.GetMainApp().GetClientBackEndSession();
+    public static EftClientBackendSession Session => (EftClientBackendSession)ClientAppUtils.GetMainApp().GetClientBackEndSession();
+}
+
+public static class EFTHelper
+{
+    public static bool IsInRaid => EFTGameExtensions.IsInRaid;
 }
